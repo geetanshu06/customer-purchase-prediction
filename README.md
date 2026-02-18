@@ -121,7 +121,7 @@ Even a baseline predictive model provides valuable insights for data-driven deci
 
 ## 📁 Repository Structure
 
-customer-purchase-prediction/  
+<pre><code>customer-purchase-prediction/  
 │  
 ├── data/  
 │   └── Online_Retail.xlsx  
@@ -138,12 +138,13 @@ customer-purchase-prediction/
 │   └── confusion_matrix.png  
 │  
 └── README.md  
-
+</code></pre>
 ---
 
 ## 🧑‍💻 Author
 
-Name: Geetanshu Aggarwal  
+<pre><code>Name: Geetanshu Aggarwal  
 Project: Customer Purchase Prediction  
 Environment: Google Colab + GitHub  
 Date: Feb 2026  
+</code></pre>
