@@ -141,6 +141,21 @@ Even a baseline predictive model provides valuable insights for data-driven deci
 </code></pre>
 ---
 
+🔗 Access the Notebook
+
+You can view or run the full analysis here:  
+➡️ notebooks/customer_purchase_prediction.ipynb
+
+
+⚙️ How to Run This Project
+
+🔹 Option 1: Google Colab
+1. Open the notebook directly from GitHub in Colab:
+https://colab.research.google.com/github/geetanshu06/customer-purchase-prediction/blob/main/notebook/customer_purchase_prediction.ipynb
+2. Run all cells — the notebook automatically reads from the `data/` folder and saves plots to `images/`.
+
+
+
 ## 🧑‍💻 Author
 
 <pre><code>Name: Geetanshu Aggarwal  
