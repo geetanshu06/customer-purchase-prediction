@@ -67,9 +67,20 @@ A logarithmic scale was applied to the spending distribution to properly visuali
 
 ---
 
-## 🤖 Baseline Model
+## 🤖 Modeling Approach
 
-A **Logistic Regression** model was implemented as the baseline classification model.
+This project follows a structured machine learning workflow starting from a baseline model and progressively improving performance.
+
+### Baseline Model
+A **Dummy Classifier** was first used to establish a baseline. It predicts the majority class and helps validate whether the problem is meaningful.
+
+### Initial Model
+A **Logistic Regression** model was implemented as the first real model due to its simplicity and interpretability.
+
+### Features Used
+- Total Transactions  
+- Total Quantity  
+- Total Spending  
 
 ### Problem Framing
 
@@ -105,6 +116,80 @@ Accuracy represents the proportion of customers correctly classified as either l
 The confusion matrix was analyzed to understand false positives and false negatives and assess classification performance across both classes.
 
 ---
+## ⚖️ Handling Class Imbalance
+
+Although the dataset is moderately balanced (~66% vs 34%), multiple techniques were applied to improve minority class prediction:
+- **Class Weights (Balanced Logistic Regression)**  
+  Adjusted model to give higher importance to minority class
+
+- **SMOTE (Synthetic Minority Oversampling Technique)**  
+  Generated synthetic samples to balance the dataset
+
+These approaches significantly improved recall and F1-score.
+## 📊 Model Comparison
+
+Multiple models were evaluated to compare performance:
+
+| Model                | F1 Score |
+|---------------------|----------|
+| Dummy Classifier    | 0.00     |
+| Logistic Regression | 0.45     |
+| Balanced Logistic   | 0.54     |
+| SMOTE Logistic      | 0.53     |
+| Tuned Logistic      | 0.45     |
+| Random Forest       | 0.45     |
+| Gradient Boosting   | 0.47     |
+
+
+## ⚙️ Hyperparameter Tuning
+
+Grid Search was used to optimize Logistic Regression parameters:
+
+- Regularization strength (`C`)
+- Solver type
+
+However, tuning did not significantly improve performance, indicating that the model is already well-regularized for this dataset.
+
+### Key Takeaways
+
+- Dummy classifier confirms the problem is non-trivial  
+- Logistic Regression performs well as a baseline  
+- Handling class imbalance significantly improves performance  
+- Tree-based models did not outperform linear models in this case  
+
+## 🎯 Threshold Tuning
+
+Instead of using the default probability threshold (0.5), multiple thresholds were tested to optimize F1-score.
+
+| Threshold | F1 Score |
+|----------|----------|
+| 0.2      | 0.48     |
+| 0.3      | 0.49     |
+| 0.4      | 0.56 ⭐   |
+| 0.5      | 0.53     |
+| 0.6      | 0.46     |
+
+### Insight
+
+- Optimal threshold = **0.4**
+- Lowering threshold improved recall and overall F1-score
+- This is critical for business use cases where missing potential customers is costly
+
+
+## 🚀 Final Model
+
+The final selected model is:
+
+👉 **Balanced Logistic Regression + Threshold = 0.4**
+
+### Why this model?
+
+- Handles class imbalance effectively  
+- Provides best F1-score (~0.56)  
+- Improves recall (captures more potential customers)  
+- Simple, interpretable, and production-friendly  
+
+
 
 ## 💼 Business Relevance
 
@@ -115,7 +200,7 @@ Predicting short-term customer purchase behavior enables businesses to:
 - Increase customer retention  
 - Support short-term revenue forecasting  
 
-Even a baseline predictive model provides valuable insights for data-driven decision-making.
+Threshold tuning further enhances business impact by prioritizing high-recall predictions, ensuring more potential customers are targeted.
 
 ---
 
